@@ -16,6 +16,20 @@ export class App extends React.Component {
     filter: '',
   };
 
+
+
+    componentDidUpdate(prevProps, prevState) {
+    // console.log('AppComponentDidUpdate')
+    if (this.state.contacts !== prevState.contacts) {
+      // console.log('refresh pages')
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
+  componentDidMount() {
+    const contactsLocalStorage = JSON.parse(localStorage.getItem('contacts'))
+    this.setState({contacts: contactsLocalStorage})
+  }
+
   formSubmitHandler = (data) => {
  this.repeatControl(data)
     
@@ -62,6 +76,9 @@ export class App extends React.Component {
   //   event.preventDefault();
   //   this.setState({filter:event.currentTarget.value})
   // }
+
+
+
 
  
   render() {
