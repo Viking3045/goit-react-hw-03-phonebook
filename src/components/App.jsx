@@ -27,7 +27,10 @@ export class App extends React.Component {
   }
   componentDidMount() {
     const contactsLocalStorage = JSON.parse(localStorage.getItem('contacts'))
-    this.setState({contacts: contactsLocalStorage})
+    if (contactsLocalStorage) {
+          this.setState({contacts: contactsLocalStorage})
+    }
+
   }
 
   formSubmitHandler = (data) => {
